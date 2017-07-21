@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1043465296538",
+    "firebase_url": "https://parkr-ea8ee.firebaseio.com",
+    "project_id": "parkr-ea8ee",
+    "storage_bucket": "parkr-ea8ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043465296538:android:41ed3c29c6ced906",
+        "android_client_info": {
+          "package_name": "com.example.mananwason.parkr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1043465296538-47b91aemv66797msnc69d5vrohj6imnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mananwason.parkr",
+            "certificate_hash": "9a9d3b207d6093b030a3c2ac1c3b2f04f4533934"
+          }
+        },
+        {
+          "client_id": "1043465296538-j2699l6fr4f56p3apj7drsr7t4i4f1h8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf24W__500fshaa3Bsg5hnRt-Grg_Ffbg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1043465296538-j2699l6fr4f56p3apj7drsr7t4i4f1h8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
