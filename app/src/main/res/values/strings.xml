@@ -13,4 +13,11 @@
     <string name="enter_password">Password</string>
     <string name="button_email_confirm">Confirm</string>
     <string name="phone_confirm">Confirm</string>
+    <string name="or_create_new_user">or Create new User</string>
+    <string name="saved_email">saved_email</string>
+    <string name="saved_name">saved_name</string>
+    <string name="sign_in_cancelled">Back button was pressed</string>
+    <string name="no_internet_connection">Internet not available</string>
+    <string name="unknown_error">Snap! Something went wrong</string>
+    <string name="unknown_sign_in_response">Oops! Something went wrong</string>
 </resources>

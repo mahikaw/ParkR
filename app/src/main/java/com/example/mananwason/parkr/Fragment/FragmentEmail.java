@@ -1,5 +1,7 @@
-package com.example.mananwason.parkr;
+package com.example.mananwason.parkr.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,13 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mananwason.parkr.R;
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 
 /**
  * Created by mananwason on 7/20/17.
@@ -32,6 +38,7 @@ public class FragmentEmail extends Fragment implements View.OnClickListener {
     private EditText emailText;
     private EditText passwordText;
     private Button emailConfirm;
+    private TextView createUser;
     private static final String TAG = "Fragment Email";
 
     @Nullable
@@ -39,11 +46,12 @@ public class FragmentEmail extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_email_login, container, false);
-        emailText = (EditText) view.findViewById(R.id.email_text);
-        passwordText = (EditText) view.findViewById(R.id.password_text);
-        emailConfirm = (Button) view.findViewById(R.id.email_password_confirm);
-        emailConfirm.setOnClickListener(this);
-
+//        emailText = (EditText) view.findViewById(R.id.email_text);
+//        passwordText = (EditText) view.findViewById(R.id.password_text);
+//        emailConfirm = (Button) view.findViewById(R.id.email_password_confirm);
+//        createUser = (TextView) view.findViewById(R.id.create_user_textview);
+//        emailConfirm.setOnClickListener(this);
+//        createUser.setOnClickListener(this);
 
         return view;
     }
@@ -89,12 +97,6 @@ public class FragmentEmail extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.email_password_confirm:
-                Log.d(TAG, "CLICK");
-                addUser();
-                break;
-        }
     }
 
     public void addUser() {
@@ -103,14 +105,13 @@ public class FragmentEmail extends Fragment implements View.OnClickListener {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-
                     mAuth.createUserWithEmailAndPassword(emailText.getText().toString(), passwordText.getText().toString()).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -120,6 +121,13 @@ public class FragmentEmail extends Fragment implements View.OnClickListener {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(getActivity(), R.string.auth_failed,
                                         Toast.LENGTH_SHORT).show();
+                            } else {
+                                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString(getString(R.string.saved_email), user.getEmail());
+                                editor.putString(getString(R.string.saved_email), user.getDisplayName());
+                                Log.d(TAG, user.getPhoneNumber());
+                                editor.apply();
                             }
 
                         }

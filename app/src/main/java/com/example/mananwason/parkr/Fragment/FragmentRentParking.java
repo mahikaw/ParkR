@@ -1,4 +1,4 @@
-package com.example.mananwason.parkr;
+package com.example.mananwason.parkr.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.example.mananwason.parkr.R;
 
 import java.util.ArrayList;
 
