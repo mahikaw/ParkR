@@ -20,4 +20,10 @@
     <string name="no_internet_connection">Internet not available</string>
     <string name="unknown_error">Snap! Something went wrong</string>
     <string name="unknown_sign_in_response">Oops! Something went wrong</string>
+    <string name="header_image">Header</string>
+    <string name="menu_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_about">About us</string>
+
 </resources>
