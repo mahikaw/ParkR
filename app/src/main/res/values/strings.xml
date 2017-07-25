@@ -8,7 +8,7 @@
     <string name="webclienttype">{"web":{"client_id":"1043465296538-j2699l6fr4f56p3apj7drsr7t4i4f1h8.apps.googleusercontent.com","project_id":"parkr-ea8ee","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"gFal3EIDAYl20ZqnVbaR7w-h","redirect_uris":["https://parkr-ea8ee.firebaseapp.com/__/auth/handler"],"javascript_origins":["http://localhost","http://localhost:5000","https://parkr-ea8ee.firebaseapp.com"]}}</string>
     <string name="login_with_phone_number">Login with Phone Number</string>
     <string name="login_with_email_id_and_password">Login with Email id and password</string>
-    <string name="add_phone_number">Phone Number</string>
+    <string name="add_phone_number">Guest Name</string>
     <string name="enter_email_id"> Email</string>
     <string name="enter_password">Password</string>
     <string name="button_email_confirm">Confirm</string>
@@ -25,5 +25,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="menu_about">About us</string>
+    <string name="menu_chat">Chat</string>
 
 </resources>

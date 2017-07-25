@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * Created by mananwason on 7/16/17.
  */
 
-public class FragmentNewGuest extends Fragment implements View.OnClickListener {
+public class oldFragmentNewGuest extends Fragment implements View.OnClickListener {
     private EditText phoneNumber;
     private Button phoneConfirm;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -34,7 +34,7 @@ public class FragmentNewGuest extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_phone_login, container, false);
-        phoneNumber = (EditText) view.findViewById(R.id.phone_number_field);
+//        phoneNumber = (EditText) view.findViewById(R.id.phone_number_field);
         phoneConfirm = (Button) view.findViewById(R.id.phone_confirm);
         phoneConfirm.setOnClickListener(this);
         return view;

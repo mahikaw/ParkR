@@ -16,9 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mananwason.parkr.Fragment.FragmentCurrentGuestBookings;
 import com.example.mananwason.parkr.Fragment.FragmentDisplaySlots;
-import com.example.mananwason.parkr.Fragment.FragmentNewGuest;
-import com.example.mananwason.parkr.Fragment.FragmentRentParking;
 import com.example.mananwason.parkr.R;
 
 /**
@@ -41,7 +40,7 @@ public class HomeFragment extends Fragment {
 
                     return true;
                 case R.id.navigation_guests:
-                    fragmentManager.beginTransaction().replace(R.id.content, new FragmentNewGuest(), "PHONE").commit();
+                    fragmentManager.beginTransaction().replace(R.id.content, new FragmentCurrentGuestBookings(), "PHONE").commit();
 
                     return true;
             }

@@ -2,12 +2,14 @@ package com.example.mananwason.parkr.Models;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 /**
  * Created by mananwason on 7/25/17.
  */
 
 @IgnoreExtraProperties
-public class Slots {
+public class Slots implements Serializable{
     String uuid;
     String start;
     String end;

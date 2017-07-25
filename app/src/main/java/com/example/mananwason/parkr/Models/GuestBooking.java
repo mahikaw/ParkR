@@ -9,12 +9,19 @@ public class GuestBooking {
     String start;
     String end;
     String apartmentNum;
+    String guestName;
+    String carNo;
 
-    public GuestBooking(String uuid, String start, String end, String apartmentNum) {
+    public GuestBooking() {
+    }
+
+    public GuestBooking(String uuid, String start, String end, String apartmentNum, String guestName, String carNo) {
         this.uuid = uuid;
         this.start = start;
         this.end = end;
         this.apartmentNum = apartmentNum;
+        this.guestName = guestName;
+        this.carNo = carNo;
     }
 
     public String getUuid() {
@@ -47,5 +54,21 @@ public class GuestBooking {
 
     public void setApartmentNum(String apartmentNum) {
         this.apartmentNum = apartmentNum;
+    }
+
+    public String getGuestName() {
+        return guestName;
+    }
+
+    public void setGuestName(String guestName) {
+        this.guestName = guestName;
+    }
+
+    public String getCarNo() {
+        return carNo;
+    }
+
+    public void setCarNo(String carNo) {
+        this.carNo = carNo;
     }
 }

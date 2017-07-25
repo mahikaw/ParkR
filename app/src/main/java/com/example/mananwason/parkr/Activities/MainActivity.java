@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.mananwason.parkr.Fragment.ChatFragment;
-import com.example.mananwason.parkr.Fragment.FragmentRentParking;
 import com.example.mananwason.parkr.R;
 
 public class MainActivity extends AppCompatActivity {

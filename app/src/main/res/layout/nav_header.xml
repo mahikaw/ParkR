@@ -13,6 +13,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:contentDescription="@string/header_image"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/parking_web" />
 
 </LinearLayout>
