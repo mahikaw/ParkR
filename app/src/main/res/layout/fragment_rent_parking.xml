@@ -6,49 +6,48 @@
 
 
     <EditText
-        android:id="@+id/password_text"
+        android:id="@+id/ed_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="49dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Click to select start time"
+        android:inputType="textFilter"
+        android:hint="Click to select start time"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/ed_apt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Apartment Number"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/password_text" />
+        android:inputType="textFilter"
+        android:hint="Apartment Number"
+        android:layout_below="@+id/ed_end_time"
+        android:layout_alignStart="@+id/ed_start_time" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/confirmSlot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_alignRight="@+id/editText"
-        android:layout_below="@+id/editText"
+        android:layout_alignEnd="@+id/ed_apt"
+        android:layout_alignRight="@+id/ed_apt"
+        android:layout_below="@+id/ed_apt"
         android:layout_marginEnd="61dp"
         android:layout_marginRight="61dp"
         android:layout_marginTop="73dp"
         android:text="Confirm" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/ed_end_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="57dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:onClick="showTimePickerDialog"
-        android:text="Click to select end time"
-        android:layout_below="@+id/password_text"
-        android:layout_alignStart="@+id/editText" />
+        android:inputType="textFilter"
+        android:hint="Click to select end time"
+        android:layout_below="@+id/ed_start_time"
+        android:layout_alignStart="@+id/ed_apt" />
 
 </RelativeLayout>

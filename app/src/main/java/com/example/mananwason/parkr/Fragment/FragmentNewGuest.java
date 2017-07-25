@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * Created by mananwason on 7/16/17.
  */
 
-public class FragmentPhone extends Fragment implements View.OnClickListener {
+public class FragmentNewGuest extends Fragment implements View.OnClickListener {
     private EditText phoneNumber;
     private Button phoneConfirm;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;

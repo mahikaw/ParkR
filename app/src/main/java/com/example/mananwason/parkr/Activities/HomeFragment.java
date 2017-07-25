@@ -1,11 +1,14 @@
 package com.example.mananwason.parkr.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mananwason.parkr.Fragment.FragmentPhone;
+import com.example.mananwason.parkr.Fragment.FragmentDisplaySlots;
+import com.example.mananwason.parkr.Fragment.FragmentNewGuest;
 import com.example.mananwason.parkr.Fragment.FragmentRentParking;
 import com.example.mananwason.parkr.R;
 
@@ -33,11 +37,11 @@ public class HomeFragment extends Fragment {
             switch (item.getItemId()) {
 
                 case R.id.navigation_slots:
-                    fragmentManager.beginTransaction().replace(R.id.content, new FragmentRentParking()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.content, new FragmentDisplaySlots(), "SLOTS").commit();
 
                     return true;
                 case R.id.navigation_guests:
-                    fragmentManager.beginTransaction().replace(R.id.content, new FragmentPhone()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.content, new FragmentNewGuest(), "PHONE").commit();
 
                     return true;
             }
@@ -52,10 +56,33 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content, new FragmentRentParking()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content, new FragmentDisplaySlots(), "SLOTS").commit();
 
         BottomNavigationView navigation = (BottomNavigationView) view.findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.floatingActionButton);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentDisplaySlots myFragment = (FragmentDisplaySlots) getFragmentManager().findFragmentByTag("SLOTS");
+                if (myFragment != null && myFragment.isVisible()) {
+                    // add your code here
+                    Log.d("Hello", "From the rent fragment");
+                    startActivity(new Intent(getActivity(), AddSlot.class));
+
+                }
+                else {
+                    Log.d("Hello", "From the phone fragment");
+                    //TODO : Change fragment
+
+                    startActivity(new Intent(getActivity(), AddGuest.class));
+
+                }
+
+            }
+        });
 
         return view;
     }

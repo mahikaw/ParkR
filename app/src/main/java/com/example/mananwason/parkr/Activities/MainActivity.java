@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.mananwason.parkr.Fragment.ChatFragment;
 import com.example.mananwason.parkr.Fragment.FragmentRentParking;
 import com.example.mananwason.parkr.R;
 
@@ -39,16 +40,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        mainFrame = (CoordinatorLayout) findViewById(R.id.layout_main);
         appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.content, new HomeFragment()).commit();
         setUpToolbar();
         setUpNavDrawer();
         setupDrawerContent(navigationView);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new HomeFragment(), FRAGMENT_TAG_HOME).commit();
         if (savedInstanceState == null) {
             currentMenuItemId = R.id.nav_home;
         }
@@ -110,6 +110,22 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 break;
+            case R.id.nav_chat:
+                Log.d("ABC", "HOME");
+                smoothActionBarToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.content_frame, new ChatFragment(), FRAGMENT_TAG_HOME).commit();
+                        if (getSupportActionBar() != null) {
+                            getSupportActionBar().setTitle(R.string.menu_home);
+                        }
+                        appBarLayout.setExpanded(true, true);
+                    }
+                });
+
+                break;
+
         }
         currentMenuItemId = menuItemId;
         drawerLayout.closeDrawers();

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ParkR</string>
-    <string name="title_lease_parking">Lease Parking</string>
-    <string name="title_add_guests">Add Guests</string>
+    <string name="title_parking_slots">My Parking slots</string>
+    <string name="title_registered_guests">My Registered Guests</string>
     <string name="title_settings">Setting</string>
     <string name="auth_failed">Sign In Failed</string>
     <string name="ipsum">ipsum</string>

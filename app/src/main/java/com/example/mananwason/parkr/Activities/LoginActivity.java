@@ -1,26 +1,23 @@
 package com.example.mananwason.parkr.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.annotation.StringRes;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
-import com.example.mananwason.parkr.Fragment.FragmentEmail;
-import com.example.mananwason.parkr.Fragment.FragmentPhone;
 import com.example.mananwason.parkr.R;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 
@@ -29,19 +26,28 @@ import java.util.Arrays;
  * Created by mananwason on 7/16/17.
  */
 
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
+    public static final String UID = "UID";
+    public static final String PHN = "PHN";
     private static final int RC_SIGN_IN = 123;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_email_login);
-        startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                new AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER).build(),
-                new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
-                .setTheme(R.style.FullscreenTheme)
-                .build(), RC_SIGN_IN);
+        if(!getSharedPreferences(UID, MODE_PRIVATE).contains(UID)) {
+            Log.d(TAG, "UID PRESENT");
+            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                    new AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER).build(),
+                    new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
+                    .setTheme(R.style.FullscreenTheme)
+                    .build(), RC_SIGN_IN);
+        }
+        else {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
 //        View bottomSheet = findViewById(R.id.bottom_sheet);
 //        Button emailLoginButton = (Button) findViewById(R.id.email_login_button);
@@ -75,7 +81,20 @@ public class LoginActivity extends AppCompatActivity  {
             IdpResponse response = IdpResponse.fromResultIntent(data);
 
             // Successfully signed in
+
             if (resultCode == ResultCodes.OK) {
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, currentFirebaseUser.getUid());
+                SharedPreferences.Editor editor = getSharedPreferences(UID, MODE_PRIVATE).edit();
+                editor.putString(UID, currentFirebaseUser.getUid());
+                editor.apply();
+                if (response.getProviderType().equalsIgnoreCase("phone")) {
+                    Log.d(TAG, currentFirebaseUser.getPhoneNumber());
+                    editor.putString(PHN, currentFirebaseUser.getPhoneNumber()).apply();
+                } else {
+
+                }
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
                 return;
@@ -103,7 +122,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     }
 
-    public void showSnackbar(@StringRes int errorMessageRes){
+    public void showSnackbar(@StringRes int errorMessageRes) {
         View rootView = findViewById(R.id.frame);
         Snackbar.make(rootView, errorMessageRes, Snackbar.LENGTH_LONG).show();
     }

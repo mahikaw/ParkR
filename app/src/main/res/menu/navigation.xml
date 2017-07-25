@@ -4,12 +4,12 @@
     <item
         android:id="@+id/navigation_slots"
         android:icon="@drawable/ic_lease_parking"
-        android:title="@string/title_lease_parking" />
+        android:title="@string/title_parking_slots" />
 
     <item
         android:id="@+id/navigation_guests"
         android:icon="@drawable/ic_add_guests"
-        android:title="@string/title_add_guests" />
+        android:title="@string/title_registered_guests" />
 
 
 </menu>
