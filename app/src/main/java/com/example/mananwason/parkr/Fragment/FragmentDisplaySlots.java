@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mananwason.parkr.Activities.LoginActivity;
@@ -34,6 +35,10 @@ import static android.content.ContentValues.TAG;
 public class FragmentDisplaySlots extends Fragment {
 
     private FirebaseRecyclerAdapter<Slots, SlotsHolder> mAdapter;
+    private View mEmptyListViewGuests;
+    private View mEmptyListViewSlots;
+    private ImageView parkingImage;
+
 
     @Nullable
     @Override
@@ -45,7 +50,12 @@ public class FragmentDisplaySlots extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         String uid = getActivity().getSharedPreferences(LoginActivity.UID, Context.MODE_PRIVATE).getString(LoginActivity.UID, "");
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("slots/"+uid);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("slots/" + uid);
+        mEmptyListViewSlots = view.findViewById(R.id.emptyTextViewSlots);
+        mEmptyListViewGuests = view.findViewById(R.id.emptyTextViewGuests);
+        parkingImage = view.findViewById(R.id.emptySlotsImage);
+        mEmptyListViewGuests.setVisibility(View.INVISIBLE);
+
         mAdapter = new FirebaseRecyclerAdapter<Slots, SlotsHolder>(
                 Slots.class,
                 R.layout.slot_item,
@@ -53,9 +63,17 @@ public class FragmentDisplaySlots extends Fragment {
                 ref) {
             @Override
             public void populateViewHolder(SlotsHolder holder, Slots chat, int position) {
-                holder.setName("Parking Number " +chat.getApartmentNum());
-                holder.setMessage("From " + chat.getStart() + " To " +chat.getEnd());
+                holder.setName("Parking Number " + chat.getApartmentNum());
+                holder.setMessage("From " + chat.getStart() + " To " + chat.getEnd());
             }
+
+            @Override
+            public void onDataChanged() {
+                // if there are no chat messages, show a view that invites the user to add a message
+                mEmptyListViewSlots.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+                parkingImage.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+            }
+
         };
 
         recyclerView.setAdapter(mAdapter);

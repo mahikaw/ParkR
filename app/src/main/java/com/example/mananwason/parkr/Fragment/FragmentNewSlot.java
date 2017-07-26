@@ -16,9 +16,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.mananwason.parkr.Activities.LoginActivity;
@@ -37,8 +40,8 @@ import java.util.Calendar;
 
 public class FragmentNewSlot extends Fragment {
     private DatabaseReference mDatabase;
-    static EditText startEditText;
-    static EditText endEditText;
+    static TextView startEditText;
+    static TextView endEditText;
     private EditText aptEditText;
     public static String current = "";
     private Button confirm;
@@ -47,9 +50,13 @@ public class FragmentNewSlot extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        View view = inflater.inflate(R.layout.fragment_rent_parking, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_slot, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        Spinner spinner = (Spinner) view.findViewById(R.id.planets_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.planets_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         confirm = (Button) view.findViewById(R.id.confirmSlot);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +71,7 @@ public class FragmentNewSlot extends Fragment {
             }
         });
         aptEditText = (EditText) view.findViewById(R.id.ed_apt);
-        startEditText = (EditText) view.findViewById(R.id.ed_start_time);
+        startEditText = (TextView) view.findViewById(R.id.ed_start_time);
         startEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +80,7 @@ public class FragmentNewSlot extends Fragment {
                 showTruitonDatePickerDialog(v);
             }
         });
-        endEditText = (EditText) view.findViewById(R.id.ed_end_time);
+        endEditText = (TextView) view.findViewById(R.id.ed_end_time);
         endEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

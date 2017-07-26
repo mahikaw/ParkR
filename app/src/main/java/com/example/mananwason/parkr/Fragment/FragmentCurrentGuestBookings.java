@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.mananwason.parkr.Activities.LoginActivity;
 import com.example.mananwason.parkr.Models.GuestBooking;
-import com.example.mananwason.parkr.Models.Slots;
 import com.example.mananwason.parkr.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FragmentCurrentGuestBookings extends Fragment {
 
     private FirebaseRecyclerAdapter<GuestBooking, FragmentCurrentGuestBookings.SlotsHolder> mAdapter;
+    private View mEmptyListViewSlots;
+    private View mEmptyListViewGuests;
+    private View mImageSlots;
 
     @Nullable
     @Override
@@ -39,6 +41,10 @@ public class FragmentCurrentGuestBookings extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list_tracks);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         String uid = getActivity().getSharedPreferences(LoginActivity.UID, Context.MODE_PRIVATE).getString(LoginActivity.UID, "");
+        mEmptyListViewSlots = view.findViewById(R.id.emptyTextViewSlots);
+        mEmptyListViewGuests = view.findViewById(R.id.emptyTextViewGuests);
+        mImageSlots = view.findViewById(R.id.emptySlotsImage);
+        mEmptyListViewSlots.setVisibility(View.INVISIBLE);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("guests/" + uid);
         mAdapter = new FirebaseRecyclerAdapter<GuestBooking, FragmentCurrentGuestBookings.SlotsHolder>(
@@ -48,9 +54,17 @@ public class FragmentCurrentGuestBookings extends Fragment {
                 ref) {
             @Override
             public void populateViewHolder(FragmentCurrentGuestBookings.SlotsHolder holder, GuestBooking chat, int position) {
-                holder.setName("For " + chat.getGuestName() + " in Apartment Number " +chat.getApartmentNum());
+                holder.setName("For " + chat.getGuestName() + " in Apartment Number " + chat.getApartmentNum());
                 holder.setMessage("From " + chat.getStart() + " To " + chat.getEnd());
             }
+
+            @Override
+            public void onDataChanged() {
+                // if there are no chat messages, show a view that invites the user to add a message
+                mEmptyListViewGuests.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+                mImageSlots.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+            }
+
         };
 
         recyclerView.setAdapter(mAdapter);

@@ -10,7 +10,7 @@
 
     <item android:top="150dp">
         <bitmap
-            android:src="@drawable/parking"
+            android:src="@drawable/parking_lot"
             android:gravity="center" />
     </item>
 

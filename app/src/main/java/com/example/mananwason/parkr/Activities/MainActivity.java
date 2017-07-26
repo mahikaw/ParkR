@@ -1,11 +1,9 @@
 package com.example.mananwason.parkr.Activities;
 
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,11 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.mananwason.parkr.Fragment.ChatFragment;
 import com.example.mananwason.parkr.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private AppBarLayout appBarLayout;
     private int currentMenuItemId;
+    private TextView textView;
 
 
     @Override
@@ -42,19 +41,18 @@ public class MainActivity extends AppCompatActivity {
         appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        textView = (TextView) findViewById(R.id.toolbar_title);
+        Typeface khandBold = Typeface.createFromAsset(getApplication().getAssets(), "Thinlines.ttf");
 
+        textView.setTypeface(khandBold);
         setUpToolbar();
         setUpNavDrawer();
+
         setupDrawerContent(navigationView);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new HomeFragment(), FRAGMENT_TAG_HOME).commit();
         if (savedInstanceState == null) {
             currentMenuItemId = R.id.nav_home;
         }
 
-//
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private void setUpToolbar() {
@@ -63,14 +61,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void setUpNavDrawer() {
         if (toolbar != null) {
             final ActionBar ab = getSupportActionBar();
             assert ab != null;
             smoothActionBarToggle = new SmoothActionBarDrawerToggle(this,
                     drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
             drawerLayout.addDrawerListener(smoothActionBarToggle);
+            getSupportActionBar().setTitle("");
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new HomeFragment(), FRAGMENT_TAG_HOME).commit();
+
+            textView.setText(R.string.menu_home);
+
             ab.setDisplayHomeAsUpEnabled(true);
             ab.setDisplayHomeAsUpEnabled(true);
             smoothActionBarToggle.syncState();
@@ -95,30 +99,24 @@ public class MainActivity extends AppCompatActivity {
         addShadowToAppBar(true);
         switch (menuItemId) {
             case R.id.nav_home:
-                Log.d("ABC", "HOME");
+                Log.d("ABC", "Home");
                 smoothActionBarToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, new HomeFragment(), FRAGMENT_TAG_HOME).commit();
-                        if (getSupportActionBar() != null) {
-                            getSupportActionBar().setTitle(R.string.menu_home);
-                        }
+                        textView.setText(R.string.menu_home);
                         appBarLayout.setExpanded(true, true);
                     }
                 });
 
                 break;
             case R.id.nav_chat:
-                Log.d("ABC", "HOME");
+                Log.d("ABC", "Chat");
                 smoothActionBarToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
                         fragmentManager.beginTransaction()
                                 .replace(R.id.content_frame, new ChatFragment(), FRAGMENT_TAG_HOME).commit();
-                        if (getSupportActionBar() != null) {
-                            getSupportActionBar().setTitle(R.string.menu_home);
-                        }
+                        textView.setText(R.string.menu_chat);
                         appBarLayout.setExpanded(true, true);
                     }
                 });
