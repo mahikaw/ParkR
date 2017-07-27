@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -52,6 +54,13 @@ public class FragmentNewSlot extends Fragment {
     private EditText HouseNumberTV;
     public static String current = "";
     static SimpleDateFormat uiDateFormat;
+    private CheckBox sun;
+    private CheckBox mon;
+    private CheckBox tue;
+    private CheckBox wed;
+    private CheckBox thu;
+    private CheckBox fri;
+    private CheckBox sat;
 
     @Nullable
     @Override
@@ -67,11 +76,37 @@ public class FragmentNewSlot extends Fragment {
         floor.setAdapter(adapter);
         uiDateFormat = new SimpleDateFormat("EEE dd MMM, yyyy", Locale.ENGLISH);
 
+        sun = (CheckBox) view.findViewById(R.id.sun);
+        mon = (CheckBox) view.findViewById(R.id.mon);
+        tue = (CheckBox) view.findViewById(R.id.tue);
+        wed = (CheckBox) view.findViewById(R.id.wed);
+        thu = (CheckBox) view.findViewById(R.id.thu);
+        fri = (CheckBox) view.findViewById(R.id.fri);
+        sat = (CheckBox) view.findViewById(R.id.sat);
+
         HouseNumberTV = (EditText) view.findViewById(R.id.ed_apt);
         startTimeTV = (TextView) view.findViewById(R.id.ed_start_time);
         startDateTV = (TextView) view.findViewById(R.id.ed_start_date);
         endDateTV = (TextView) view.findViewById(R.id.ed_end_date);
         endTimeTV = (TextView) view.findViewById(R.id.ed_end_time);
+
+        Calendar calendar = Calendar.getInstance();
+        String ampm = "AM";
+
+        int a = calendar.get(Calendar.AM_PM);
+        if (a == Calendar.PM) {
+            ampm = "PM";
+        } else {
+            ampm = "AM";
+        }
+        DateUtils utils = new DateUtils();
+
+
+        startTimeTV.setText(calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + " " + ampm);
+        startDateTV.setText(utils.CalendarToUI(calendar));
+        calendar.add(Calendar.HOUR, 1);
+        endTimeTV.setText(calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + " " + ampm);
+        endDateTV.setText(utils.CalendarToUI(calendar));
 
         startTimeTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,18 +227,46 @@ public class FragmentNewSlot extends Fragment {
         switch (id) {
             case R.id.confirmSlot:
                 DateUtils utils = new DateUtils();
-
+                int count  = 0;
+                if(sun.isChecked()){
+                    count++;
+                }if(mon.isChecked()){
+                    count++;
+                }if(tue.isChecked()){
+                    count++;
+                }if(wed.isChecked()){
+                    count++;
+                }if(thu.isChecked()){
+                    count++;
+                }if(fri.isChecked()){
+                    count++;
+                }if(sat.isChecked()){
+                    count++;
+                }
 
                 String uid = getActivity().getSharedPreferences(LoginActivity.UID, Context.MODE_PRIVATE).getString(LoginActivity.UID, "");
                 Calendar startTime = utils.UiToCalendar(startDateTV.getText().toString(), startTimeTV.getText().toString());
                 Calendar endTime = utils.UiToCalendar(endDateTV.getText().toString(), endTimeTV.getText().toString());
                 if (startTime.compareTo(endTime) < 0) {
-                    Slots user = new Slots(uid, utils.CalendarToISO(startTime), utils.CalendarToISO(endTime), HouseNumberTV.getText().toString());
-                    mDatabase.child("slots/" + uid).push().setValue(user);
+                    if(count > 0){
+                        for( int i =0; i < count; i++){
+                            startTime.add(Calendar.DATE, 1);
+                            endTime.add(Calendar.DATE, 1);
+                            Slots user = new Slots(uid, utils.CalendarToISO(startTime), utils.CalendarToISO(endTime), HouseNumberTV.getText().toString(), floor.getSelectedItemPosition());
+                            mDatabase.child("slots/" + uid).push().setValue(user);
+
+                        }
+                    }
+                    else {
+                        Log.d("SE", floor.getSelectedItemPosition() + "");
+                        Slots user = new Slots(uid, utils.CalendarToISO(startTime), utils.CalendarToISO(endTime), HouseNumberTV.getText().toString(), floor.getSelectedItemPosition());
+                        mDatabase.child("slots/" + uid).push().setValue(user);
+                    }
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                     getActivity().getSupportFragmentManager().popBackStack();
+
                 } else {
                     Toast.makeText(getActivity(), "End Time should be greater than Start Time. Please try again!", Toast.LENGTH_LONG).show();
                 }

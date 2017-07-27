@@ -3,6 +3,7 @@ package com.example.mananwason.parkr.Activities;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mananwason.parkr.Fragment.ChatFragment;
 import com.example.mananwason.parkr.R;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private int currentMenuItemId;
     private TextView textView;
+    private Boolean exit = false;
 
 
     @Override
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(khandBold);
         setUpToolbar();
         setUpNavDrawer();
+        exit = false;
 
         setupDrawerContent(navigationView);
         if (savedInstanceState == null) {
@@ -92,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        exit = false;
     }
 
     private void doMenuAction(int menuItemId) {
@@ -140,4 +150,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (exit) {
+            finish(); // finish activity
+        } else {
+            Toast.makeText(this, "Press Back again to Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
+        }
+
+    }
 }

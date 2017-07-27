@@ -7,15 +7,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_parking"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_parking"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:parentActivityName=".Activities.LoginActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Activities.LoginActivity"
             android:windowSoftInputMode="adjustPan">
@@ -29,9 +30,11 @@
         </activity>
         <activity
             android:name=".Activities.AddGuest"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Activities.MainActivity" />
         <activity
             android:name=".Activities.AddSlot"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Activities.MainActivity" />
 
     </application>

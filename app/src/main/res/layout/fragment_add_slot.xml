@@ -92,30 +92,43 @@
         android:paddingStart="85dp">
 
         <CheckBox
+            android:id="@+id/sun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/mon"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/tue"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/wed"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/thu"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/fri"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <CheckBox
+            android:id="@+id/sat"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

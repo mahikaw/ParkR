@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class DateUtils {
     SimpleDateFormat uiTimeFormat = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
-    SimpleDateFormat isoFormat = new SimpleDateFormat("YYYY-MM-DD'T'hh:mm:ss", Locale.ENGLISH);
+    SimpleDateFormat isoFormat = new SimpleDateFormat("YYYY-MM-dd'T'hh:mm:ss", Locale.ENGLISH);
     SimpleDateFormat uiDateFormat = new SimpleDateFormat("EEE dd MMM, yyyy", Locale.ENGLISH);
 
     public Calendar UiToCalendar(String date, String time) {
@@ -37,6 +37,10 @@ public class DateUtils {
 
     public String CalendarToISO(Calendar calendar) {
         return isoFormat.format(calendar.getTime());
+
+    }
+    public String CalendarToUI(Calendar calendar) {
+        return uiDateFormat.format(calendar.getTime());
 
     }
 }

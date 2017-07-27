@@ -14,15 +14,17 @@ public class Slots implements Serializable{
     String start;
     String end;
     String apartmentNum;
+    int floor;
 
     public Slots() {
     }
 
-    public Slots(String uuid, String start, String end, String apartmentNum) {
+    public Slots(String uuid, String start, String end, String apartmentNum, int floor) {
         this.uuid = uuid;
         this.start = start;
         this.end = end;
         this.apartmentNum = apartmentNum;
+        this.floor = floor;
     }
 
     public String getUuid() {
@@ -55,5 +57,13 @@ public class Slots implements Serializable{
 
     public void setApartmentNum(String apartmentNum) {
         this.apartmentNum = apartmentNum;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 }

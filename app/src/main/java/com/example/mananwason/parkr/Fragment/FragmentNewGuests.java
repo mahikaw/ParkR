@@ -27,6 +27,7 @@ import com.example.mananwason.parkr.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -62,11 +63,13 @@ public class FragmentNewGuests extends Fragment {
         mEmptyListViewGuests.setVisibility(View.INVISIBLE);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("slots/").child(uid);
+        Query query = ref.orderByChild("floor"); // or ...orderByChild("username");
+
         mAdapter = new FirebaseRecyclerAdapter<Slots, FragmentNewGuests.SlotsHolder>(
                 Slots.class,
                 R.layout.slot_item,
                 FragmentNewGuests.SlotsHolder.class,
-                ref) {
+                query) {
             @Override
             public void populateViewHolder(FragmentNewGuests.SlotsHolder holder, Slots chat, int position) {
                 holder.setName(chat.getStart());
