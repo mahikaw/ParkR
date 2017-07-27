@@ -17,21 +17,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mananwason.parkr.Activities.LoginActivity;
 import com.example.mananwason.parkr.Activities.MainActivity;
 import com.example.mananwason.parkr.Models.Slots;
 import com.example.mananwason.parkr.R;
+import com.example.mananwason.parkr.Utils.DateUtils;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 
 /**
@@ -40,11 +44,14 @@ import java.util.Calendar;
 
 public class FragmentNewSlot extends Fragment {
     private DatabaseReference mDatabase;
-    static TextView startEditText;
-    static TextView endEditText;
-    private EditText aptEditText;
+    static TextView startTimeTV;
+    static TextView endTimeTV;
+    static TextView startDateTV;
+    static TextView endDateTV;
+    private Spinner floor;
+    private EditText HouseNumberTV;
     public static String current = "";
-    private Button confirm;
+    static SimpleDateFormat uiDateFormat;
 
     @Nullable
     @Override
@@ -52,40 +59,45 @@ public class FragmentNewSlot extends Fragment {
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_add_slot, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Spinner spinner = (Spinner) view.findViewById(R.id.planets_spinner);
+
+        floor = (Spinner) view.findViewById(R.id.planets_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        confirm = (Button) view.findViewById(R.id.confirmSlot);
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String uid = getActivity().getSharedPreferences(LoginActivity.UID, Context.MODE_PRIVATE).getString(LoginActivity.UID, "");
-                Slots user = new Slots(uid, startEditText.getText().toString(), endEditText.getText().toString(), aptEditText.getText().toString());
-                mDatabase.child("slots/" + uid).push().setValue(user);
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-                getActivity().getSupportFragmentManager().popBackStack();
-            }
-        });
-        aptEditText = (EditText) view.findViewById(R.id.ed_apt);
-        startEditText = (TextView) view.findViewById(R.id.ed_start_time);
-        startEditText.setOnClickListener(new View.OnClickListener() {
+        floor.setAdapter(adapter);
+        uiDateFormat = new SimpleDateFormat("EEE dd MMM, yyyy", Locale.ENGLISH);
+
+        HouseNumberTV = (EditText) view.findViewById(R.id.ed_apt);
+        startTimeTV = (TextView) view.findViewById(R.id.ed_start_time);
+        startDateTV = (TextView) view.findViewById(R.id.ed_start_date);
+        endDateTV = (TextView) view.findViewById(R.id.ed_end_date);
+        endTimeTV = (TextView) view.findViewById(R.id.ed_end_time);
+
+        startTimeTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 current = "START";
                 showTruitonTimePickerDialog(v);
-                showTruitonDatePickerDialog(v);
             }
         });
-        endEditText = (TextView) view.findViewById(R.id.ed_end_time);
-        endEditText.setOnClickListener(new View.OnClickListener() {
+        endTimeTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 current = "END";
                 showTruitonTimePickerDialog(v);
+            }
+        });
+        startDateTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current = "START";
+                showTruitonDatePickerDialog(v);
+            }
+        });
+        endDateTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current = "END";
                 showTruitonDatePickerDialog(v);
             }
         });
@@ -116,10 +128,14 @@ public class FragmentNewSlot extends Fragment {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
+            Calendar calendar = new GregorianCalendar(year, month, day);
+//            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+            uiDateFormat.setCalendar(calendar);
             if (FragmentNewSlot.current.contentEquals("START")) {
-                startEditText.setText(day + "/" + (month + 1) + "/" + year);
+                startDateTV.setText(uiDateFormat.format(calendar.getTime()));
+
             } else {
-                endEditText.setText(day + "/" + (month + 1) + "/" + year);
+                endDateTV.setText(uiDateFormat.format(calendar.getTime()));
             }
         }
     }
@@ -146,10 +162,13 @@ public class FragmentNewSlot extends Fragment {
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             // Do something with the time chosen by the user
+            boolean isPM = (hourOfDay >= 12);
+            String time = String.format("%02d:%02d %s", (hourOfDay == 12 || hourOfDay == 0) ? 12 : hourOfDay % 12, minute, isPM ? "PM" : "AM");
+
             if (FragmentNewSlot.current.contentEquals("START")) {
-                startEditText.setText(startEditText.getText() + "-" + hourOfDay + ":" + minute);
+                startTimeTV.setText(time);
             } else {
-                endEditText.setText(endEditText.getText() + "-" + hourOfDay + ":" + minute);
+                endTimeTV.setText(time);
             }
 
         }
@@ -161,7 +180,7 @@ public class FragmentNewSlot extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_add_slot, menu);
     }
 
     @Override
@@ -170,6 +189,26 @@ public class FragmentNewSlot extends Fragment {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id) {
+            case R.id.confirmSlot:
+                DateUtils utils = new DateUtils();
+
+
+                String uid = getActivity().getSharedPreferences(LoginActivity.UID, Context.MODE_PRIVATE).getString(LoginActivity.UID, "");
+                Calendar startTime = utils.UiToCalendar(startDateTV.getText().toString(), startTimeTV.getText().toString());
+                Calendar endTime = utils.UiToCalendar(endDateTV.getText().toString(), endTimeTV.getText().toString());
+                if (startTime.compareTo(endTime) < 0) {
+                    Slots user = new Slots(uid, utils.CalendarToISO(startTime), utils.CalendarToISO(endTime), HouseNumberTV.getText().toString());
+                    mDatabase.child("slots/" + uid).push().setValue(user);
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent);
+                    getActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    Toast.makeText(getActivity(), "End Time should be greater than Start Time. Please try again!", Toast.LENGTH_LONG).show();
+                }
+
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -37,6 +37,10 @@ import java.util.ArrayList;
 public class FragmentNewGuests extends Fragment {
     private FirebaseRecyclerAdapter<Slots, FragmentNewGuests.SlotsHolder> mAdapter;
     private DatabaseReference mDatabase;
+    private View mEmptyListViewGuests;
+    private View mEmptyListViewSlots;
+    private ImageView parkingImage;
+
 
     @Nullable
     @Override
@@ -52,7 +56,11 @@ public class FragmentNewGuests extends Fragment {
         View view = inflater.inflate(R.layout.fragment_display_slots, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list_tracks);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //TODO : retrieve all other slots
+        mEmptyListViewSlots = view.findViewById(R.id.emptyTextViewSlots);
+        mEmptyListViewGuests = view.findViewById(R.id.emptyTextViewGuests);
+        parkingImage = view.findViewById(R.id.emptySlotsImage);
+        mEmptyListViewGuests.setVisibility(View.INVISIBLE);
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("slots/").child(uid);
         mAdapter = new FirebaseRecyclerAdapter<Slots, FragmentNewGuests.SlotsHolder>(
                 Slots.class,
@@ -64,6 +72,13 @@ public class FragmentNewGuests extends Fragment {
                 holder.setName(chat.getStart());
                 holder.setMessage(chat.getEnd());
             }
+            @Override
+            public void onDataChanged() {
+                // if there are no chat messages, show a view that invites the user to add a message
+                mEmptyListViewSlots.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+                parkingImage.setVisibility(mAdapter.getItemCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+            }
+
 
             @Override
             public SlotsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
