@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
@@ -40,6 +43,7 @@ import com.example.mananwason.parkr.Fragment.ChatFragment;
 import com.example.mananwason.parkr.Models.Slots;
 import com.example.mananwason.parkr.R;
 import com.example.mananwason.parkr.Utils.DateUtils;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -161,6 +165,33 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 break;
+            case R.id.nav_log_out:
+                Log.d("ABC", "Log out");
+
+                new AlertDialog.Builder(MainActivity.this).setTitle("Do you know really want to sign out? ").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+                        auth.signOut();
+                        SharedPreferences.Editor editor = getSharedPreferences(LoginActivity.UID, MODE_PRIVATE).edit();
+                        editor.remove(LoginActivity.UID);
+                        editor.apply();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            }
+                        }, 1000);
+
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+
+                break;
 
         }
         currentMenuItemId = menuItemId;
@@ -199,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
 
 
 //package com.example.mananwason.parkr.Fragment;

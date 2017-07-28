@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
 
             if (resultCode == ResultCodes.OK) {
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, currentFirebaseUser.getUid());
                 SharedPreferences.Editor editor = getSharedPreferences(UID, MODE_PRIVATE).edit();
                 editor.putString(UID, currentFirebaseUser.getUid());

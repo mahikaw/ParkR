@@ -5,23 +5,25 @@ package com.example.mananwason.parkr.Models;
  */
 
 public class GuestBooking {
-    String uuid;
-    String start;
-    String end;
-    String apartmentNum;
-    String guestName;
-    String carNo;
+    private String uuid;
+    private String start;
+    private String end;
+    private String apartmentNum;
+    private String guestName;
+    private String carNo;
+    private String guestPhoneNumber;
 
     public GuestBooking() {
     }
 
-    public GuestBooking(String uuid, String start, String end, String apartmentNum, String guestName, String carNo) {
+    public GuestBooking(String uuid, String start, String end, String apartmentNum, String guestName, String carNo, String guestPhoneNumber) {
         this.uuid = uuid;
         this.start = start;
         this.end = end;
         this.apartmentNum = apartmentNum;
         this.guestName = guestName;
         this.carNo = carNo;
+        this.guestPhoneNumber = guestPhoneNumber;
     }
 
     public String getUuid() {
@@ -70,5 +72,13 @@ public class GuestBooking {
 
     public void setCarNo(String carNo) {
         this.carNo = carNo;
+    }
+
+    public String getGuestPhoneNumber() {
+        return guestPhoneNumber;
+    }
+
+    public void setGuestPhoneNumber(String guestPhoneNumber) {
+        this.guestPhoneNumber = guestPhoneNumber;
     }
 }

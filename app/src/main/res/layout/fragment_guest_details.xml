@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,177 +10,10 @@
         android:layout_height="200dp"
         android:src="@drawable/visitor_parking" />
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="20dp"-->
-        <!--android:weightSum="1">-->
-
-        <!--<ImageView-->
-            <!--android:id="@+id/cal_icon"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="13dp"-->
-            <!--android:layout_weight="0.3"-->
-            <!--android:src="@drawable/ic_schedule_black_24dp" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="0.7"-->
-            <!--android:padding="10dp"-->
-            <!--android:text="Select Timings"-->
-            <!--android:textSize="20sp" />-->
-    <!--</LinearLayout>-->
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:weightSum="1">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/ed_start_date"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="80dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:text="Wed 26 Jul, 2017"-->
-            <!--android:textSize="17sp" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/ed_start_time"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="70dp"-->
-            <!--android:padding="8dp"-->
-            <!--android:text="11:00 PM"-->
-            <!--android:textSize="17sp" />-->
-    <!--</LinearLayout>-->
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:weightSum="1">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/ed_end_date"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="80dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:text="Wed 26 Jul, 2017"-->
-            <!--android:textSize="17sp" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/ed_end_time"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="70dp"-->
-            <!--android:padding="8dp"-->
-            <!--android:text="12:00 AM"-->
-            <!--android:textSize="17sp" />-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="10dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:paddingStart="85dp">-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<CheckBox-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:paddingStart="95dp">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="24dp"-->
-            <!--android:text="S" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="22dp"-->
-            <!--android:text="M" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="21dp"-->
-
-            <!--android:text="T" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="21dp"-->
-
-            <!--android:text="W" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="24dp"-->
-
-            <!--android:text="T" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="24dp"-->
-
-            <!--android:text="F" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingEnd="24dp"-->
-
-            <!--android:text="S" />-->
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:weightSum="1">
 
         <ImageView
@@ -189,34 +23,33 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="9dp"
             android:layout_weight="0.3"
-            android:src="@drawable/ic_location_city_black_24dp" />
-        <!--<TextView-->
-        <!--android:id="@+id/ed_"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="0.4"-->
-        <!--android:padding="3dp"-->
-        <!--android:text="11:00 PM"-->
-        <!--android:layout_marginStart="75dp"-->
-        <!--android:textSize="17sp" />-->
+            android:src="@drawable/ic_supervisor_account_black_24dp" />
 
-        <EditText
-            android:id="@+id/person_name"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.5"
-            android:ems="12"
-            android:hint="Guest Name"
-            android:imeOptions="actionNext"
-            android:inputType="textPersonName"
-            android:padding="8dp" />
+            app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/person_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.5"
+                android:ems="12"
+                android:hint="Guest Name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:padding="8dp" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:weightSum="1">
 
         <ImageView
@@ -226,18 +59,15 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="9dp"
             android:layout_weight="0.3"
-            android:src="@drawable/ic_location_city_black_24dp" />
-        <!--<TextView-->
-        <!--android:id="@+id/ed_"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="0.4"-->
-        <!--android:padding="3dp"-->
-        <!--android:text="11:00 PM"-->
-        <!--android:layout_marginStart="75dp"-->
-        <!--android:textSize="17sp" />-->
+            android:src="@drawable/ic_directions_car_black_24dp" />
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/car_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -248,12 +78,14 @@
             android:imeOptions="actionNext"
             android:inputType="textCapCharacters"
             android:padding="8dp" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:weightSum="1">
 
         <ImageView
@@ -264,22 +96,19 @@
             android:layout_marginTop="9dp"
             android:layout_weight="0.3"
             android:src="@drawable/ic_location_city_black_24dp" />
-        <!--<TextView-->
-        <!--android:id="@+id/ed_"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="0.4"-->
-        <!--android:padding="3dp"-->
-        <!--android:text="11:00 PM"-->
-        <!--android:layout_marginStart="75dp"-->
-        <!--android:textSize="17sp" />-->
         <Spinner
             android:id="@+id/floor_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp" />
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/apt_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -290,12 +119,14 @@
             android:imeOptions="actionNext"
             android:inputType="number"
             android:padding="8dp" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:weightSum="1">
 
         <ImageView
@@ -305,18 +136,15 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="9dp"
             android:layout_weight="0.3"
-            android:src="@drawable/ic_location_city_black_24dp" />
-        <!--<TextView-->
-        <!--android:id="@+id/ed_"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="0.4"-->
-        <!--android:padding="3dp"-->
-        <!--android:text="11:00 PM"-->
-        <!--android:layout_marginStart="75dp"-->
-        <!--android:textSize="17sp" />-->
+            android:src="@drawable/ic_contact_phone_black_24dp" />
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/guest_phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -325,8 +153,9 @@
             android:ems="12"
             android:hint="Guest Phone Number"
             android:imeOptions="actionDone"
-            android:inputType="textCapCharacters"
+            android:inputType="phone"
             android:padding="8dp" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -334,49 +163,217 @@
 </LinearLayout>
 
 
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:orientation="vertical">-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="20dp"-->
+    <!--android:weightSum="1">-->
 
-    <!--<EditText-->
-        <!--android:id="@+id/person_name"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:inputType="textPersonName"-->
-        <!--android:hint="@string/add_phone_number"-->
-        <!--android:layout_centerHorizontal="true" />-->
-    <!--<EditText-->
-        <!--android:id="@+id/car_number"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:inputType="textPersonName"-->
-        <!--android:hint="Car Number"-->
-        <!--android:layout_marginTop="100dp"-->
-        <!--android:layout_marginBottom="50dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_centerHorizontal="true" />-->
+    <!--<ImageView-->
+    <!--android:id="@+id/cal_icon"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="13dp"-->
+    <!--android:layout_weight="0.3"-->
+    <!--android:src="@drawable/ic_schedule_black_24dp" />-->
 
-    <!--<EditText-->
-        <!--android:id="@+id/apt_number"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:inputType="textPersonName"-->
-        <!--android:hint="Apartment Number"-->
-        <!--android:layout_below="@id/car_number"-->
-        <!--android:layout_marginTop="200dp"-->
-        <!--android:layout_marginBottom="50dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_centerHorizontal="true" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="0.7"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="Select Timings"-->
+    <!--android:textSize="20sp" />-->
+    <!--</LinearLayout>-->
 
-    <!--<Button-->
-        <!--android:id="@+id/phone_confirm"-->
-        <!--style="@style/Widget.AppCompat.Button.Colored"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:text="@string/phone_confirm"-->
-        <!--android:layout_below="@+id/apt_number" />-->
-<!--</RelativeLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:weightSum="1">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ed_start_date"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="80dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="Wed 26 Jul, 2017"-->
+    <!--android:textSize="17sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ed_start_time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="70dp"-->
+    <!--android:padding="8dp"-->
+    <!--android:text="11:00 PM"-->
+    <!--android:textSize="17sp" />-->
+    <!--</LinearLayout>-->
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:weightSum="1">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ed_end_date"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="80dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="Wed 26 Jul, 2017"-->
+    <!--android:textSize="17sp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ed_end_time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="70dp"-->
+    <!--android:padding="8dp"-->
+    <!--android:text="12:00 AM"-->
+    <!--android:textSize="17sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="10dp"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:paddingStart="85dp">-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<CheckBox-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:paddingStart="95dp">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="24dp"-->
+    <!--android:text="S" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="22dp"-->
+    <!--android:text="M" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="21dp"-->
+
+    <!--android:text="T" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="21dp"-->
+
+    <!--android:text="W" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="24dp"-->
+
+    <!--android:text="T" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="24dp"-->
+
+    <!--android:text="F" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:paddingEnd="24dp"-->
+
+    <!--android:text="S" />-->
+    <!--</LinearLayout>-->
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>--><!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:layout_gravity="center"--><!--android:orientation="vertical">-->
+
+    <!--<EditText--><!--android:id="@+id/person_name"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:inputType="textPersonName"--><!--android:hint="@string/add_phone_number"--><!--android:layout_centerHorizontal="true" />--><!--<EditText--><!--android:id="@+id/car_number"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:inputType="textPersonName"--><!--android:hint="Car Number"--><!--android:layout_marginTop="100dp"--><!--android:layout_marginBottom="50dp"--><!--android:layout_alignParentTop="true"--><!--android:layout_centerHorizontal="true" />-->
+
+    <!--<EditText--><!--android:id="@+id/apt_number"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:inputType="textPersonName"--><!--android:hint="Apartment Number"--><!--android:layout_below="@id/car_number"--><!--android:layout_marginTop="200dp"--><!--android:layout_marginBottom="50dp"--><!--android:layout_alignParentTop="true"--><!--android:layout_centerHorizontal="true" />-->
+
+    <!--<Button--><!--android:id="@+id/phone_confirm"--><!--style="@style/Widget.AppCompat.Button.Colored"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_centerHorizontal="true"--><!--android:text="@string/phone_confirm"--><!--android:layout_below="@+id/apt_number" />--><!--</RelativeLayout>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/ed_"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="0.4"-->
+    <!--android:padding="3dp"-->
+    <!--android:text="11:00 PM"-->
+    <!--android:layout_marginStart="75dp"-->
+    <!--android:textSize="17sp" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/ed_"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="0.4"-->
+    <!--android:padding="3dp"-->
+    <!--android:text="11:00 PM"-->
+    <!--android:layout_marginStart="75dp"-->
+    <!--android:textSize="17sp" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/ed_"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="0.4"-->
+    <!--android:padding="3dp"-->
+    <!--android:text="11:00 PM"-->
+    <!--android:layout_marginStart="75dp"-->
+    <!--android:textSize="17sp" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/ed_"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="0.4"-->
+    <!--android:padding="3dp"-->
+    <!--android:text="11:00 PM"-->
+    <!--android:layout_marginStart="75dp"-->
+    <!--android:textSize="17sp" />-->
+
+

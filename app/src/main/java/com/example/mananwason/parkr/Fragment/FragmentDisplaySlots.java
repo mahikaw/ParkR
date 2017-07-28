@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.mananwason.parkr.Activities.LoginActivity;
 import com.example.mananwason.parkr.Models.Slots;
 import com.example.mananwason.parkr.R;
+import com.example.mananwason.parkr.Utils.DateUtils;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,8 +64,10 @@ public class FragmentDisplaySlots extends Fragment {
                 ref) {
             @Override
             public void populateViewHolder(SlotsHolder holder, Slots chat, int position) {
+                DateUtils utils = new DateUtils();
+                Log.d("TAG", chat.getStart());
                 holder.setName("Parking Number " + chat.getApartmentNum());
-                holder.setMessage("From " + chat.getStart() + " To " + chat.getEnd());
+                holder.setMessage("From " + utils.ISOtoUI(chat.getStart()) + " To " + utils.ISOtoUI(chat.getEnd()));
             }
 
             @Override
@@ -94,17 +97,6 @@ public class FragmentDisplaySlots extends Fragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-//        switch (id) {
-//            case R.id.sort_popular:
-//                new APIClient().getMoviesAPI().getPopularMovies(ApiKey.API_KEY).enqueue(new MoviesListProcessor());
-//                break;
-//
-//            case R.id.sort_top:
-//                new APIClient().getMoviesAPI().getTopMovies(ApiKey.API_KEY).enqueue(new MoviesListProcessor());
-//                break;
-//
-//        }
         return super.onOptionsItemSelected(item);
     }
 

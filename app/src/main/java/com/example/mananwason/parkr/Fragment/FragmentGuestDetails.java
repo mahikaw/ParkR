@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,9 +42,10 @@ import java.util.Calendar;
  */
 
 public class FragmentGuestDetails extends Fragment implements View.OnClickListener {
-    private EditText personName;
-    private EditText carNum;
-    private EditText aptNum;
+    private TextInputEditText personName;
+    private TextInputEditText carNum;
+    private TextInputEditText phoneNum;
+    private TextInputEditText aptNum;
     private DatabaseReference mDatabase;
     private Slots extras;
     private Spinner floor;
@@ -52,15 +57,22 @@ public class FragmentGuestDetails extends Fragment implements View.OnClickListen
         setHasOptionsMenu(true);
         extras = (Slots) getArguments().getSerializable("SLOT");
         View view = inflater.inflate(R.layout.fragment_guest_details, container, false);
-        personName = (EditText) view.findViewById(R.id.person_name);
-        carNum = (EditText) view.findViewById(R.id.car_number);
-        aptNum = (EditText) view.findViewById(R.id.apt_number);
+        personName = (TextInputEditText) view.findViewById(R.id.person_name);
+        carNum = (TextInputEditText) view.findViewById(R.id.car_number);
+        phoneNum = (TextInputEditText) view.findViewById(R.id.guest_phone_number);
+        aptNum = (TextInputEditText) view.findViewById(R.id.apt_number);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         floor = (Spinner) view.findViewById(R.id.floor_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floor.setAdapter(adapter);
+        TextInputLayout tilPersonName = (TextInputLayout) view.findViewById(R.id.text_input_layout2);
+        TextInputLayout tilCarNumber = (TextInputLayout) view.findViewById(R.id.text_input_layout3);
+        TextInputLayout tilHouseNumber = (TextInputLayout) view.findViewById(R.id.text_input_layout);
+        TextInputLayout tilPhoneNumber = (TextInputLayout) view.findViewById(R.id.text_input_layout4);
+//        til.setError("You need to enter a name");
+
 
 
         return view;
@@ -101,9 +113,10 @@ public class FragmentGuestDetails extends Fragment implements View.OnClickListen
 //                } else {
 //                    Toast.makeText(getActivity(), "End Time should be greater than Start Time. Please try again!", Toast.LENGTH_LONG).show();
 //                }
+
                 Log.d("ABC", personName.getText().toString());
                 String uid = getActivity().getSharedPreferences(LoginActivity.UID, Context.MODE_PRIVATE).getString(LoginActivity.UID, "");
-                GuestBooking user = new GuestBooking(uid, extras.getStart(), extras.getEnd(), aptNum.getText().toString(), personName.getText().toString(), carNum.getText().toString());
+                GuestBooking user = new GuestBooking(uid, extras.getStart(), extras.getEnd(), aptNum.getText().toString(), personName.getText().toString(), carNum.getText().toString(),"");
                 mDatabase.child("guests/" + uid).push().setValue(user);
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("guests/" + uid);
                 Query queryRef = ref.orderByChild("start").equalTo(extras.getStart());
@@ -145,6 +158,11 @@ public class FragmentGuestDetails extends Fragment implements View.OnClickListen
 
         return super.onOptionsItemSelected(item);
     }
-
+    private boolean isValidPhoneNumber(CharSequence phoneNumber) {
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            return Patterns.PHONE.matcher(phoneNumber).matches();
+        }
+        return false;
+    }
 
 }

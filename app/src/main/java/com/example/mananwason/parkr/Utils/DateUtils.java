@@ -14,8 +14,9 @@ import java.util.Locale;
 
 public class DateUtils {
     SimpleDateFormat uiTimeFormat = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
-    SimpleDateFormat isoFormat = new SimpleDateFormat("YYYY-MM-dd'T'hh:mm:ss", Locale.ENGLISH);
+    SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss", Locale.ENGLISH);
     SimpleDateFormat uiDateFormat = new SimpleDateFormat("EEE dd MMM, yyyy", Locale.ENGLISH);
+    SimpleDateFormat uiDateTimeFormat = new SimpleDateFormat("EEE dd/MMM/yyyy, HH:mm", Locale.ENGLISH);
 
     public Calendar UiToCalendar(String date, String time) {
         Calendar calendar = Calendar.getInstance();
@@ -42,6 +43,20 @@ public class DateUtils {
     public String CalendarToUI(Calendar calendar) {
         return uiDateFormat.format(calendar.getTime());
 
+    }
+
+    public String ISOtoUI(String iso){
+        Calendar calendar = Calendar.getInstance();
+        try {
+            String date = isoFormat.format(new Date());
+            Date isoDate = isoFormat.parse(date);
+            calendar.setTime(isoDate);
+            Log.d("CAL", calendar.getTime().toString());
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        return uiDateTimeFormat.format(calendar.getTime());
     }
 
     //package com.example.mananwason.parkr.Fragment;

@@ -28,5 +28,6 @@
     <string name="menu_chat">Chat</string>
     <string name="start_adding_slots">Unfortunately Nothing here. You can add slots for when your parking is available!</string>
     <string name="start_adding_guests">Unfortunately Nothing here. You can start registering parking spots for your guests over here!</string>
+    <string name="menu_log_out">Sign Out</string>
 
 </resources>
