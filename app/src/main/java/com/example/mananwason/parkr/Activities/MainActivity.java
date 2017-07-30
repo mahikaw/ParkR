@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 smoothActionBarToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        textView.setText(R.string.menu_home);
+                        textView.setText(R.string.title_parking_slots);
                         appBarLayout.setExpanded(true, true);
                     }
                 });
@@ -157,10 +157,11 @@ public class MainActivity extends AppCompatActivity {
                 smoothActionBarToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, new ChatFragment(), FRAGMENT_TAG_HOME).commit();
+//                        fragmentManager.beginTransaction()
+//                                .replace(R.id.content_frame, new ChatFragment(), FRAGMENT_TAG_HOME).commit();
+                        startActivity(new Intent(MainActivity.this, ChatActivity.class));
                         textView.setText(R.string.menu_chat);
-                        appBarLayout.setExpanded(true, true);
+//                        appBarLayout.setExpanded(true, true);
                     }
                 });
 

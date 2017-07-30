@@ -36,6 +36,8 @@
             android:name=".Activities.AddSlot"
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Activities.MainActivity" />
+        <activity android:name=".Activities.ChatActivity"/>
+        <activity android:name=".Activities.ChatIndexActivity"/>
 
     </application>
 

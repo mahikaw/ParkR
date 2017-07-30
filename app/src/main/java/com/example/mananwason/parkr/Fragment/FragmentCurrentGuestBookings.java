@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.mananwason.parkr.Activities.LoginActivity;
 import com.example.mananwason.parkr.Models.GuestBooking;
 import com.example.mananwason.parkr.R;
+import com.example.mananwason.parkr.Utils.DateUtils;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,8 +55,9 @@ public class FragmentCurrentGuestBookings extends Fragment {
                 ref) {
             @Override
             public void populateViewHolder(FragmentCurrentGuestBookings.SlotsHolder holder, GuestBooking chat, int position) {
-                holder.setName("For " + chat.getGuestName() + " in Apartment Number " + chat.getApartmentNum());
-                holder.setMessage("From " + chat.getStart() + " To " + chat.getEnd());
+                DateUtils utils = new DateUtils();
+                holder.setName("For " + chat.getGuestName() + " in Apartment Number " + chat.getApartmentNum() + "Parking");
+                holder.setMessage("From " + utils.ISOtoUI(chat.getStart()) + " To " + utils.ISOtoUI(chat.getEnd()));
             }
 
             @Override

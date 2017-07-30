@@ -48,8 +48,8 @@ public class DateUtils {
     public String ISOtoUI(String iso){
         Calendar calendar = Calendar.getInstance();
         try {
-            String date = isoFormat.format(new Date());
-            Date isoDate = isoFormat.parse(date);
+//            String date = isoFormat.format(new Date());
+            Date isoDate = isoFormat.parse(iso);
             calendar.setTime(isoDate);
             Log.d("CAL", calendar.getTime().toString());
         }

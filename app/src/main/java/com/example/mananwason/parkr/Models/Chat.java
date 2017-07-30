@@ -13,7 +13,7 @@ public class Chat {
         // Needed for Firebase
     }
 
-    public Chat(String name, String uid, String message) {
+    public Chat(String name, String message, String uid) {
         mName = name;
         mMessage = message;
         mUid = uid;

@@ -24,6 +24,7 @@ import com.example.mananwason.parkr.Activities.LoginActivity;
 import com.example.mananwason.parkr.Models.GuestBooking;
 import com.example.mananwason.parkr.Models.Slots;
 import com.example.mananwason.parkr.R;
+import com.example.mananwason.parkr.Utils.DateUtils;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -72,8 +73,10 @@ public class FragmentNewGuests extends Fragment {
                 query) {
             @Override
             public void populateViewHolder(FragmentNewGuests.SlotsHolder holder, Slots chat, int position) {
-                holder.setName(chat.getStart());
-                holder.setMessage(chat.getEnd());
+
+                DateUtils dateUtils = new DateUtils();
+                holder.setName("From " + dateUtils.ISOtoUI(chat.getStart()) +  " To " + dateUtils.ISOtoUI(chat.getEnd()));
+                holder.setMessage("Parking for Apartment Number : " + chat.getApartmentNum() + " on " +chat.getFloor());
             }
             @Override
             public void onDataChanged() {

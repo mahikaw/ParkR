@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 
 @IgnoreExtraProperties
-public class Slots implements Serializable{
+public class Slots implements Serializable {
     String uuid;
     String start;
     String end;
@@ -59,8 +59,18 @@ public class Slots implements Serializable{
         this.apartmentNum = apartmentNum;
     }
 
-    public int getFloor() {
-        return floor;
+    public String getFloor() {
+        switch (floor) {
+            case 0:
+                return "GROUND FLOOR";
+            case 1:
+                return "FIRST FLOOR";
+            case 2:
+                return "SECOND FLOOR";
+            case 3:
+                return "THIRD FLOOR";
+        }
+        return "GROUND FLOOR";
     }
 
     public void setFloor(int floor) {
